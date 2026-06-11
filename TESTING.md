@@ -1,118 +1,125 @@
 # Testing
 
-## Comma-separated username input
+## Comma-separated usernames
 
-I manually tested the deployed website by entering:
+I tested the form with:
 
 `SallyMcGrath,CodeYourFuture,40thieves`
 
-Submitting the form successfully fetched and displayed all three users.
+All three users were fetched and shown in the leaderboard.
 
-## Fetching Codewars user data
+## Fetching user data
 
-I tested valid usernames including:
+I tested the app with these valid Codewars usernames:
 
 * `CodeYourFuture`
 * `SallyMcGrath`
 * `40thieves`
 
-The application fetched current data from the Codewars API and displayed each user's username, clan, and score.
+For each user, the app showed their username, clan and score.
 
-## Overall ranking shown by default
+## Default ranking
 
-After submitting usernames, I confirmed that the ranking dropdown defaulted to `Overall` and displayed the users' scores.
+After loading users, the dropdown showed `Overall` by default and displayed the overall scores.
 
-## Language ranking dropdown
+## Language dropdown
 
-I confirmed that the dropdown was populated with the languages found in the fetched users' ranking data.
+I checked that the dropdown was filled with the languages found in the users' Codewars data.
 
-I manually selected rankings including JavaScript, SQL, Go, and TypeScript and confirmed that the table updated.
+I tested JavaScript, SQL, Go and TypeScript. The table changed each time to show the correct ranking.
 
-## Updating the table when the ranking changes
+## Table updates
 
-I changed the selected ranking from Overall to individual languages and confirmed that the displayed users and scores changed to match the selected ranking.
+I switched between Overall and different language rankings and checked that the users and scores updated correctly.
 
-## Username, clan, and score columns
+## Table columns
 
-I confirmed that the table displayed the following columns:
+I checked that the table included:
 
 * Username
 * Clan
 * Score
 
-## Sorting from highest to lowest score
+## Sorting
 
 Unit tests in `index.test.mjs`.
 
-The unit test checks that `sortUsersByRanking()` sorts users from the highest overall score to the lowest overall score.
+The test checks that `sortUsersByRanking()` puts users in order from highest score to lowest score.
 
-This function is imported and used by the application when displaying the leaderboard.
+This function is also used by the main app when the leaderboard is displayed.
 
-I also manually tested:
+I also tested this manually with:
 
 `SallyMcGrath,CodeYourFuture,40thieves`
 
-The results appeared in descending score order.
+The users appeared in the correct order.
 
-## Users without the selected language ranking
+## Users without a language ranking
 
-I selected SQL, Go, and TypeScript rankings and confirmed that users without a ranking in the chosen language were not displayed.
+I selected SQL, Go and TypeScript and checked that users without a ranking in that language were not shown.
 
-## Highlighting the top user
+## Top user highlight
 
-I confirmed that the first and highest-scoring user was displayed with a bold, gold-highlighted row.
+I checked that the highest-scoring user was shown in a bold gold row.
 
-## Invalid usernames
+## Invalid username
 
 I searched for:
 
 `bob`
 
-The page displayed:
+The app showed:
 
 `Could not find bob`
 
-The previous table data was cleared and the dropdown was reset to Overall.
+The previous results were cleared and the dropdown went back to Overall.
 
-## Fetch and network errors
+## Valid and invalid usernames together
 
-Using Chrome DevTools, I changed the Network setting to Offline and submitted a valid username.
+I searched for:
 
-The page displayed:
+`CodeYourFuture,bob`
+
+The app showed:
+
+`Could not find bob`
+
+This made it clear which username could not be found, and the old results were cleared.
+
+## Network error
+
+In Chrome DevTools, I changed the Network setting to Offline and searched for a valid username.
+
+The app showed:
 
 `Failed to fetch`
 
-The application did not crash or continue displaying old results.
+The page did not crash and the old results were removed.
 
 ## Accessibility
 
-I ran Lighthouse Accessibility using **Snapshot mode** on the deployed website.
+I used Lighthouse in **Snapshot mode** on the deployed website.
 
-I tested the following page states:
+I checked:
 
-* A leaderboard containing three users
+* The leaderboard with three users
 * A language-filtered leaderboard
 * The invalid-user error state
 
-All tested states passed 21 out of 21 automated accessibility checks and received an Accessibility score of 100.
+All three views passed 21 out of 21 accessibility checks and scored 100.
 
-The page includes:
+The page also includes labels for the form controls, table headings, a table caption, a main landmark and a live status message.
 
-* Associated labels for form controls
-* Semantic table headings
-* A table caption
-* A main landmark
-* A live status message
-
-## Automated test commands
+## Automated test
 
 I ran:
 
 `npm install`
 
-followed by:
+and then:
 
 `npm test`
 
-The installation completed successfully and the unit test passed with zero failures.
+The test passed with no failures.
+
 
