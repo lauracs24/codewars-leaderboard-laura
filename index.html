@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Codewars Leaderboard</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <main>
+      <h1>Codewars Leaderboard</h1>
+
+      <form id="userForm">
+        <label for="usernames">Codewars usernames</label>
+
+        <input
+          id="usernames"
+          type="text"
+          placeholder="CodeYourFuture,40thieves,SallyMcGrath"
+          required
+        />
+
+        <button type="submit">Load leaderboard</button>
+      </form>
+
+      <p id="message" role="status" aria-live="polite"></p>
+
+      <label for="languageSelect">Choose ranking</label>
+
+      <select id="languageSelect">
+        <option value="overall">Overall</option>
+      </select>
+
+      <table>
+        <caption>
+          Codewars ranking results
+        </caption>
+
+        <thead>
+          <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Clan</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
+
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </main>
+
+    <script src="index.mjs" type="module"></script>
+  </body>
+</html>
